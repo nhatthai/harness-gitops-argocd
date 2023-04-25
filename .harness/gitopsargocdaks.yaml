@@ -55,3 +55,4 @@ pipeline:
                 - AllErrors
               action:
                 type: StageRollback
+        variables: []
