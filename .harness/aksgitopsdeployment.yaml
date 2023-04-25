@@ -20,20 +20,31 @@ pipeline:
                   name: Update Release Repo
                   identifier: updateReleaseRepo
                   timeout: 10m
-                  spec: {}
+                  spec:
+                    variables: []
+                    delegateSelectors:
+                      - helm-delegate
+                  failureStrategies: []
               - step:
                   type: MergePR
                   name: Merge PR
                   identifier: mergePR
                   spec:
                     deleteSourceBranch: true
+                    variables: []
+                    delegateSelectors:
+                      - helm-delegate
                   timeout: 10m
+                  failureStrategies: []
               - step:
                   type: GitOpsFetchLinkedApps
                   name: Fetch Linked Apps
                   identifier: fetchLinkedApps
                   timeout: 10m
-                  spec: {}
+                  spec:
+                    delegateSelectors:
+                      - helm-delegate
+                  failureStrategies: []
             rollbackSteps: []
           service:
             serviceRef: aksgitopsservice
